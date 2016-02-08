@@ -6,11 +6,18 @@ html(lang="ja")
     meta(content='IE=edge', http-equiv='X-UA-Compatible')
     // build:css styles/vendor.css
     // bower:css
+    link(rel='stylesheet', href='../bower_components/normalize-css/normalize.css')
     // endbower
     // endbuild
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
-    h1 Hello jQuery
+    header.page-header
+      .inner
+        h1.site-logo
+          img(src="images/logo.png" alt="Shitbrain")
+
+    .page-main
+      ul#gallery.gallery
 
     // build:js scripts/vendor.js
     // bower:js

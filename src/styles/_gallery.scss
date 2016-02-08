@@ -1,0 +1,17 @@
+.page-main {
+  margin: auto;
+  padding: 0 10px 100px;
+  width: 950px;
+}
+
+.gallery {
+  margin: 0;
+  padding: 0;
+  &-item {
+    list-style: none;
+    margin-top: 10px;
+    &.is-loading {
+      opacity: 0;
+    }
+  }
+}
