@@ -13,5 +13,8 @@
     &.is-loading {
       opacity: 0;
     }
+    .caption {
+      display: none;
+    }
   }
 }
