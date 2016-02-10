@@ -12,9 +12,24 @@ html(lang="ja")
     link(rel='stylesheet', href='styles/style.css', media='all')
   body
     header.page-header
-      .inner
+      .inner.clearfix
         h1.site-logo
           img(src="images/logo.png" alt="Shitbrain")
+        form#gallery-filter.filter-form
+          - categories = []
+          - categories[0] = {name: 'all', text: 'All'}
+          - categories[1] = {name: 'people', text: 'People'}
+          - categories[2] = {name: 'animals', text: 'Animals'}
+          - categories[3] = {name: 'nature', text: 'Nature'}
+          - categories[4] = {name: 'plantes', text: 'Plantes'}
+          - categories[5] = {name: 'architects', text: 'Architectures'}
+          each cat, i in categories
+            span.form-item
+              if i === 0
+                input(type="radio" name="filter" value="#{cat.name}" id="filter-#{cat.name}" checked)
+              else
+                input(type="radio" name="filter" value="#{cat.name}" id="filter-#{cat.name}")
+              label(for="filter-#{cat.name}")= cat.text
 
     .page-main
       ul#gallery.gallery
@@ -23,6 +38,7 @@ html(lang="ja")
     // build:js scripts/vendor.js
     // bower:js
     script(src='../bower_components/jquery/dist/jquery.min.js')
+    script(src='../bower_components/jquery-ui/jquery-ui.min.js')
     script(src='../bower_components/imagesloaded-packaged/imagesloaded.pkgd.js')
     script(src='../bower_components/masonry/dist/masonry.pkgd.js')
     // endbower

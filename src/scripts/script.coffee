@@ -1,8 +1,10 @@
 $gallery = $ '#gallery'
 $loadMoreButton = $ '#load-more'
+$filter = $ '#gallery-filter'
 addItemCount = 16
 added = 0
 allData = []
+filteredData = []
 
 # masonryを準備
 $gallery.masonry
@@ -10,8 +12,11 @@ $gallery.masonry
   gutter: 10
   itemSelector: '.gallery-item'
 
-initGallery =  (data) ->
+initGallery = (data) ->
   allData = data
+
+  # 最初はフィルタリングせず、そのまま全てのデータを渡す
+  filteredData = allData
 
   # 最初のアイテムを表示
   addItems()
@@ -19,13 +24,16 @@ initGallery =  (data) ->
   # 追加ボタンがクリックされたら追加で表示
   $loadMoreButton.on 'click', addItems
 
-addItems = ->
+  # フィルターのラジオボタンが変更されたらフィルタリングを実行
+  $filter.on 'change', 'input[type="radio"]', filterItems
+
+addItems = (filter) ->
   elements = []
 
   # 追加するデータの配列
-  sliceData = allData.slice added, added + addItemCount
+  slicedData = filteredData.slice added, added + addItemCount
 
-  $.each sliceData, (i, item) ->
+  $.each slicedData, (i, item) ->
     itemHTML ="""
       <li class="gallery-item is-loading">
         <a href="#{item.images.large}">
@@ -52,13 +60,44 @@ addItems = ->
         .removeClass 'is-loading'
       $gallery.masonry 'appended', elements
 
-  # 柄済みのアイテム数の更新
-  added += sliceData.length
+      # フィルタリング時は再配置
+      if filter then $gallery.masonry()
+
+  # 追加済みのアイテム数の更新
+  added += slicedData.length
 
   # JSON データがすべて追加し終わっていたら追加ボタンを消す
-  if added < allData.length
+  if added < filteredData.length
     $loadMoreButton.show()
   else
     $loadMoreButton.hide()
 
+filterItems = ->
+  key = $(@).val()
+
+  # 追加済みのMasonryアイテム
+  masonryItems = $gallery.masonry 'getItemElements'
+
+  # Masonryアイテムを削除
+  $gallery.masonry 'remove', masonryItems
+
+  # フィルタリング済みアイテムのデータと
+  # 追加済みアイテム数をリセット
+  filteredData = []
+  added = 0
+
+  if key is 'all'
+    filteredData = allData
+  else
+    filteredData = $.grep allData, (item) ->
+      item.category is key
+
+  addItems true
+
 $.getJSON '/data/content.json', initGallery
+
+# ラジオボタンのカスタマイズ
+$ '.filter-form input[type="radio"]'
+  .button
+    icons:
+      primary: 'icon-radio'
