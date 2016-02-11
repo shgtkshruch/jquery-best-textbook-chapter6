@@ -20,6 +20,7 @@
     "imagesloaded-packaged": "^3.1.4",
     "masonry": "^4.0.0",
     "jquery": "1",
-    "jquery-ui": "jqueryui#1"
+    "jquery-ui": "jqueryui#1",
+    "jquery-colorbox": "colorbox#^1.6.3"
   }
 }

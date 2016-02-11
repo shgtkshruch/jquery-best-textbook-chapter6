@@ -62,6 +62,15 @@ addItems = (filter) ->
 
       # フィルタリング時は再配置
       if filter then $gallery.masonry()
+    # リンクにColorboxを設定
+    .find 'a'
+    .colorbox
+      maxWidth: '970px'
+      maxHeight: '95%'
+      title: ->
+        $ @
+          .find '.inner'
+          .html()
 
   # 追加済みのアイテム数の更新
   added += slicedData.length
