@@ -27,6 +27,9 @@ initGallery = (data) ->
   # フィルターのラジオボタンが変更されたらフィルタリングを実行
   $filter.on 'change', 'input[type="radio"]', filterItems
 
+  # アイテムのリンクにホバーエフェクト処理を登録
+  $gallery.on 'mouseenter mouseleave', '.gallery-item a', hoverDirection
+
 addItems = (filter) ->
   elements = []
 
@@ -40,7 +43,7 @@ addItems = (filter) ->
           <img src="#{item.images.thumb}" alt="#{item.title}">
           <span class="caption">
             <span class="inner">
-              <b clas="title">#{item.title}</b>
+              <b class="title">#{item.title}</b>
               <time class="date" datetime="#{item.date}">
                 #{item.date.replace(/-0?/g, '/')}
               </time>
@@ -102,6 +105,48 @@ filterItems = ->
       item.category is key
 
   addItems true
+
+# ホバーエフェクト
+hoverDirection = (event) ->
+  $overlay = $(@).find '.caption'
+  side = getMouseDirection event
+  animateTo
+  positionIn =
+    top: '0%'
+    left: '0%'
+  positionOut = (->
+    switch side
+      when 0
+        return { top: '-100%', left: '0%' }
+      when 1
+        return { top: '0%', left: '100%' }
+      when 2
+        return { top: '100%', left: '0%' }
+      when 3
+        return { top: '0%', left: '-100%' }
+  )()
+
+  if event.type is 'mouseenter'
+    animateTo = positionIn
+    $overlay.css positionOut
+  else
+    animateTo = positionOut
+
+  $overlay
+    .stop true
+    .animate animateTo, 250, 'easeOutExpo'
+
+# マウスの方向を検出する関数
+# http://stackoverflow.com/a/3647634
+getMouseDirection = (event) ->
+  $el = $ event.currentTarget
+  offset = $el.offset()
+  w = $el.outerWidth()
+  h = $el.outerHeight()
+  x = (event.pageX - offset.left - w / 2) * (if w > h then h / w else 1)
+  y = (event.pageY - offset.top - h / 2) * (if h > w then w / h else 1)
+  direction = Math.round((Math.atan2(y, x) * (180 / Math.PI) + 180) / 90 + 3) % 4
+  return direction
 
 $.getJSON '/data/content.json', initGallery
 
