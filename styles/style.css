@@ -1,0 +1,157 @@
+html {
+  font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body {
+  color: black;
+  background-color: whitesmoke;
+}
+
+h1 {
+  margin: 0;
+  font-size: 100%;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.page-header {
+  padding: 32px 0;
+  border-bottom: 1px solid #e6e6e6;
+  background-color: white;
+}
+
+.page-header .inner {
+  width: 950px;
+  margin: auto;
+  padding: 8px 10px;
+}
+
+.page-header .site-logo {
+  float: left;
+  line-height: 1;
+}
+
+.filter-form {
+  float: right;
+}
+
+.filter-form label {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 0 0.25em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-weight: bold;
+}
+
+.filter-form label.ui-state-focus {
+  outline: 1px dotted;
+}
+
+.filter-form label .ui-icon {
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  margin-top: 2px;
+  margin-right: 0.5em;
+  vertical-align: top;
+  background: url(../images/sprites.png) no-repeat 0 0;
+}
+
+.filter-form label.ui-state-active .ui-icon {
+  background-position: -20px 0;
+}
+
+.filter-form .ui-helper-hidden-accessible {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.page-main {
+  width: 950px;
+  margin: auto;
+  padding: 0 10px 100px;
+}
+
+.gallery {
+  margin: 0;
+  padding: 0;
+}
+
+.gallery-item {
+  margin-top: 10px;
+  list-style: none;
+}
+
+.gallery-item.is-loading {
+  opacity: 0;
+}
+
+.gallery-item a {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.gallery-item .caption {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  background-color: rgba(231, 31, 25, 0.8);
+}
+
+.gallery-item .inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.gallery-item .title {
+  display: block;
+  line-height: 1.17;
+}
+
+.gallery-item .date {
+  display: block;
+  list-style: 1.75;
+  font-family: "Georgia", serif;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.load-more {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 1em 0;
+  border: 1px solid #e6e6e6;
+  background-color: white;
+}
+
+.clearfix::after {
+  display: table;
+  clear: both;
+  content: '';
+}

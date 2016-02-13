@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Chapter 06 · jQuery 最高の教科書</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" href="styles/vendor.css">
+    <link rel="stylesheet" href="styles/style.css" media="all">
+  </head>
+
+  <body>
+    <header class="page-header">
+      <div class="inner clearfix">
+        <h1 class="site-logo"><img src="images/logo.png" alt="Shitbrain"></h1>
+        <form id="gallery-filter" class="filter-form"><span class="form-item">
+            <input type="radio" name="filter" value="all" id="filter-all" checked>
+            <label for="filter-all">All</label></span><span class="form-item">
+            <input type="radio" name="filter" value="people" id="filter-people">
+            <label for="filter-people">People</label></span><span class="form-item">
+            <input type="radio" name="filter" value="animals" id="filter-animals">
+            <label for="filter-animals">Animals</label></span><span class="form-item">
+            <input type="radio" name="filter" value="nature" id="filter-nature">
+            <label for="filter-nature">Nature</label></span><span class="form-item">
+            <input type="radio" name="filter" value="plantes" id="filter-plantes">
+            <label for="filter-plantes">Plantes</label></span><span class="form-item">
+            <input type="radio" name="filter" value="architects" id="filter-architects">
+            <label for="filter-architects">Architectures</label></span>
+        </form>
+      </div>
+    </header>
+    <div class="page-main">
+      <ul id="gallery" class="gallery"></ul>
+      <button id="load-more" class="load-more">Load more</button>
+    </div>
+    <script src="scripts/vendor.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+
+</html>
