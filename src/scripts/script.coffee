@@ -148,7 +148,7 @@ getMouseDirection = (event) ->
   direction = Math.round((Math.atan2(y, x) * (180 / Math.PI) + 180) / 90 + 3) % 4
   return direction
 
-$.getJSON '/data/content.json', initGallery
+$.getJSON 'data/content.json', initGallery
 
 # ラジオボタンのカスタマイズ
 $ '.filter-form input[type="radio"]'
