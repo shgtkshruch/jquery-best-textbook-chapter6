@@ -131,7 +131,7 @@
     return direction;
   };
 
-  $.getJSON('/data/content.json', initGallery);
+  $.getJSON('data/content.json', initGallery);
 
   $('.filter-form input[type="radio"]').button({
     icons: {
